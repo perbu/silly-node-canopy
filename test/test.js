@@ -16,7 +16,7 @@ describe("ADD test",function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
-//      res.status.should.equal(200);
+      res.status.should.equal(200);
       res.body.answer.should.equal(7);
       done();
     });
@@ -36,7 +36,7 @@ describe("MUL test",function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
-//      res.status.should.equal(200);
+      res.status.should.equal(200);
       res.body.answer.should.equal(56);
       done();
     });
@@ -56,7 +56,7 @@ describe("DIV test",function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
-  //    res.status.should.equal(200);
+      res.status.should.equal(200);
       res.body.answer.should.equal(8);
       done();
     });
@@ -77,7 +77,7 @@ describe("SUB test",function(){
     .expect(200) // THis is HTTP response
     .end(function(err,res){
       // HTTP status should be 200
-//      res.status.should.equal(200);
+      res.status.should.equal(200);
       res.body.answer.should.equal(67);
       done();
     });
