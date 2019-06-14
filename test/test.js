@@ -34,6 +34,18 @@ describe('Tests', function() {
 
 // UNIT test begin
 
+describe("Basic HTTP connection",function(){
+  it("should check if the server is answering HTTP requests to / with 404", function(done){
+    target
+    .get("/")
+    .expect(404)
+    .end(function(err,res){
+      res.status.should.equal(404);
+      done();
+    })
+  });
+});
+
 describe("ADD test",function(){
 
   it("should add two numbers up",function(done){
