@@ -1,7 +1,15 @@
 var supertest = require("supertest");
 var should = require("should");
 
-var server = supertest.agent("http://localhost:3000");
+
+
+
+var target = supertest.agent("http://localhost:3000");
+
+var server = require('../server');
+
+
+console.log("Starting tests.")
 
 // UNIT test begin
 
@@ -10,7 +18,7 @@ describe("ADD test",function(){
   it("should add two numbers up",function(done){
 
     // calling home page api
-    server
+    target
     .get("/calculator/add/2/5")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
@@ -30,7 +38,7 @@ describe("MUL test",function(){
   it("should multiply two numbers up",function(done){
 
     // calling home page api
-    server
+    target
     .get("/calculator/multi/8/7")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
@@ -50,7 +58,7 @@ describe("DIV test",function(){
   it("should divide two numbers",function(done){
 
     // calling home page api
-    server
+    target
     .get("/calculator/div/64/8")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
@@ -71,7 +79,7 @@ describe("SUB test",function(){
   it("should subtract two numbers",function(done){
 
     // calling home page api
-    server
+    target
     .get("/calculator/sub/100/33")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response

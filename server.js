@@ -1,27 +1,28 @@
-// Get the framework for hapi.js
-const Hapi = require('hapi');
+// server.js
+const Hapi = require("hapi");
 
-// Store the hosting server and the port 
-const host = 'localhost';
-const port = 3000;
-
-// Lets create the server here
 const server = Hapi.Server({
-    host: host,
-    port: port
+  host: "localhost",
+  port: 3000
 });
 
-// Create an init method to start the server. 
-const init = async () => {
+const apiServer = {
+  // Get the framework for hapi.js
 
-    await server.start();
-    console.log("Server up and running at port: " + port);
+  // Create an init method to start the server.
+  init: async function() {
+    try {
+      server.start();
+    } catch (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    console.log("Server up and running.");
+  }
+};
+require("./routes/routes")(server);
 
-}
+// Set up the routes and logic.
+apiServer.init();
 
-// Call the init method.
-
-require('./routes/routes')(server);
-
-init();
-
+module.exports = apiServer;

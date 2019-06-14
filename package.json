@@ -9,7 +9,15 @@
   },
   "author": "",
   "license": "ISC",
+  "eslintConfig": {
+    "env": {
+        "browser": false,
+        "node": true,
+        "es6": true
+    }
+  },
   "dependencies": {
+    "eslint": "^5.16.0",
     "hapi": "^18.1.0",
     "mocha": "^6.1.4",
     "should": "^13.2.3",
