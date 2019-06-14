@@ -6,23 +6,29 @@ const server = Hapi.Server({
   port: 3000
 });
 
+var emitter = require('events').EventEmitter;
+
 const apiServer = {
   // Get the framework for hapi.js
+  em: new emitter(),
 
   // Create an init method to start the server.
   init: async function() {
     try {
-      server.start();
+      await server.start();
+      this.em.emit('serverStarted','Server is started');
     } catch (err) {
       console.error(err);
       process.exit(1);
     }
-    console.log("Server up and running.");
+  },
+  shutdown: function() {
+    server.stop();
   }
 };
 require("./routes/routes")(server);
 
 // Set up the routes and logic.
-apiServer.init();
+// apiServer.init();
 
 module.exports = apiServer;

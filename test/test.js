@@ -1,15 +1,36 @@
 var supertest = require("supertest");
 var should = require("should");
 
-
-
-
 var target = supertest.agent("http://localhost:3000");
 
-var server = require('../server');
+var server = require('../apiserver');
 
 
-console.log("Starting tests.")
+describe('Tests', function() {
+  before('Set up a server', function(done) {
+    // runs before all tests in this block
+    server.init();
+    server.em.on("serverStarted", function(){
+      done();
+    }); 
+  });
+
+  after('Shut down the server', function() {
+    // runs after all tests in this block
+    console.log("Shutting down...");
+    server.shutdown();
+  });
+
+  beforeEach(function() {
+    // runs before each test in this block
+  });
+
+  afterEach(function() {
+    // runs after each test in this block
+  });
+
+  // test cases
+
 
 // UNIT test begin
 
@@ -93,3 +114,4 @@ describe("SUB test",function(){
 
 });
 
+});
