@@ -6,7 +6,7 @@ const server = Hapi.Server({
   port: 3000
 });
 
-var emitter = require('events').EventEmitter;
+const emitter = require('events').EventEmitter;
 
 const apiServer = {
   // Get the framework for hapi.js
@@ -17,15 +17,24 @@ const apiServer = {
     try {
       await server.start();
       this.em.emit('serverStarted','Server is started');
+      // set up event handler for shutdown.
+      this.em.on('serverShutdown', () => { this.shutdown() });
     } catch (err) {
       console.error(err);
       process.exit(1);
     }
   },
   shutdown: function() {
-    server.stop();
+    server.stop({ timeout: 1000 }).then(function (err) {
+      process.exit((err) ? 1 : 0)
+    })
+
+
   }
+
+
 };
+
 require("./routes/routes")(server);
 
 // Set up the routes and logic.

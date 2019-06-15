@@ -1,9 +1,9 @@
-var supertest = require("supertest");
-var should = require("should");
+const supertest = require("supertest");
+const should = require("should");
 
-var target = supertest.agent("http://localhost:3000");
+const target = supertest.agent("http://localhost:3000");
 
-var server = require('../apiserver');
+const server = require('../apiserver');
 
 
 describe('Tests', function() {
@@ -17,8 +17,7 @@ describe('Tests', function() {
 
   after('Shut down the server', function() {
     // runs after all tests in this block
-    console.log("Shutting down...");
-    server.shutdown();
+    server.em.emit('serverShutdown', 'Requesting shutdown');
   });
 
   beforeEach(function() {
