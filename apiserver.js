@@ -1,7 +1,7 @@
 // server.js
 const Hapi = require("hapi");
 
-const server = Hapi.Server({
+let server = Hapi.Server({
   host: "localhost",
   port: 3000
 });
@@ -19,6 +19,8 @@ const apiServer = {
       this.em.emit('serverStarted','Server is started');
       // set up event handler for shutdown.
       this.em.on('serverShutdown', () => { this.shutdown() });
+      this.em.on('dumpStats', () => this.dumpStats() );
+
     } catch (err) {
       console.error(err);
       process.exit(1);
@@ -28,6 +30,10 @@ const apiServer = {
     server.stop({ timeout: 1000 }).then(function (err) {
       process.exit((err) ? 1 : 0)
     })
+  },
+  dumpStats: function() {
+    console.log("Stats:");
+    console.log("We've done some stuff...");
 
 
   }

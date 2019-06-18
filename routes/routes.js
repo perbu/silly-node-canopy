@@ -81,4 +81,15 @@ module.exports = function(server) {
             return data;
         }
     });
+/*
+    server.route({
+        methos: 'GET',
+        path: '/dumpstats',
+        handler: function(request,h) {
+
+        }
+
+    });
+
+*/
 }
