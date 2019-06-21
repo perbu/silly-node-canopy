@@ -1,15 +1,20 @@
-const supertest = require("supertest");
-const should = require("should");
+/* eslint-disable no-undef */
+const supertest = require('supertest');
+// eslint-disable-next-line no-unused-vars
+const should = require('should');
 
-const target = supertest.agent("http://localhost:3000");
+const target = supertest.agent('http://localhost:3000');
 
-const server = require('../apiserver');
+const serverClass = require('../apiserver');
+
+let server = new serverClass;
+
 
 
 describe('Tests', function() {
   before('Set up a server', function(done) {
     // runs before all tests in this block
-    server.init();
+    server.startup();
     server.em.on("serverStarted", function(){
       done();
     }); 

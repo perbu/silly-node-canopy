@@ -1,87 +1,57 @@
-
 module.exports = function(server) {
-    //About route
-    server.route({
-        method: 'GET',
-        path: '/calculator/about',
-        handler: function (request, h) {
-    
-            var data = {
-                message: 'Welcome to our Calculator Service'
-            };
-    
-            return data;
-        }
-    });
+  //About route
+  server.get("/calculator/about", function(req, res) {
+    res.send("Welcome to our Calculator Service");
+  });
 
-    //Add route
-    server.route({
-        method: 'GET',
-        path: '/calculator/add/{num1}/{num2}',
-        handler: function (request, h) {
+  //Add route
+  server.get("/calculator/add/:num1/:num2", function(req, res) {
+    const num1 = parseInt(req.params.num1);
+    const num2 = parseInt(req.params.num2);
 
-            const num1 = parseInt(request.params.num1);
-            const num2 = parseInt(request.params.num2);
+    const data = {
+      answer: num1 + num2
+    };
 
-            var data = {
-                answer: num1 + num2
-            };
-    
-            return data;
-        }
-    });
+    res.send(data);
+  });
 
-    //Subtract route
-    server.route({
-        method: 'GET',
-        path: '/calculator/sub/{num1}/{num2}',
-        handler: function (request, h) {
+  //Subtract route
+  server.get("/calculator/sub/:num1/:num2", function(req, res) {
+    const num1 = parseInt(req.params.num1);
+    const num2 = parseInt(req.params.num2);
 
-            const num1 = parseInt(request.params.num1);
-            const num2 = parseInt(request.params.num2);
+    var data = {
+      answer: num1 - num2
+    };
 
-            var data = {
-                answer: num1 - num2
-            };
-    
-            return data;
-        }
-    });
+    res.send(data);
+  });
 
-    //Multiply route
-    server.route({
-        method: 'GET',
-        path: '/calculator/multi/{num1}/{num2}',
-        handler: function (request, h) {
+  //Multiply route
+  server.get("/calculator/multi/:num1/:num2", function(req, res) {
+    const num1 = parseInt(req.params.num1);
+    const num2 = parseInt(req.params.num2);
 
-            const num1 = parseInt(request.params.num1);
-            const num2 = parseInt(request.params.num2);
+    var data = {
+      answer: num1 * num2
+    };
 
-            var data = {
-                answer: num1 * num2
-            };
-    
-            return data;
-        }
-    });
+    res.send(data);
+  });
 
-    //Division route
-    server.route({
-        method: 'GET',
-        path: '/calculator/div/{num1}/{num2}',
-        handler: function (request, h) {
+  //Division route
+  server.get("/calculator/div/:num1/:num2", function(req, res) {
+    const num1 = parseInt(req.params.num1);
+    const num2 = parseInt(req.params.num2);
 
-            const num1 = parseInt(request.params.num1);
-            const num2 = parseInt(request.params.num2);
+    var data = {
+      answer: num1 / num2
+    };
 
-            var data = {
-                answer: num1 / num2
-            };
-    
-            return data;
-        }
-    });
-/*
+    res.send(data);
+  });
+  /*
     server.route({
         methos: 'GET',
         path: '/dumpstats',
@@ -92,4 +62,4 @@ module.exports = function(server) {
     });
 
 */
-}
+};
