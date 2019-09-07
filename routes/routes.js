@@ -51,15 +51,17 @@ module.exports = function(server) {
 
     res.send(data);
   });
-  /*
-    server.route({
-        methos: 'GET',
-        path: '/dumpstats',
-        handler: function(request,h) {
 
-        }
 
-    });
+server.get("/calculator/add/:num1/:num2", function(req, res) {
+  const num1 = parseInt(req.params.num1);
+  const num2 = parseInt(req.params.num2);
 
-*/
+  const data = {
+    answer: num1 + num2
+  };
+
+  res.send(data);
+});
+
 };
