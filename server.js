@@ -1,9 +1,13 @@
 "use strict";
 
-const serverClass = require('./apiserver');
+const serverClass = require("./apiserver");
 
-let server = new serverClass;
+let server = new serverClass();
 
-server.em.on('serverStarted', () => { console.log("Server reported it is up and running")});
-server.em.on('serverShutdown', () => { console.log("Server reported it is shutting down.")});
+server.em.on("serverStarted", (msg) => {
+  console.log("Server reported: ", msg);
+});
+server.em.on("serverShutdown", (msg) => {
+  console.log("Server reported:", msg);
+});
 server.startup();
