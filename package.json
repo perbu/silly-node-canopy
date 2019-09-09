@@ -6,6 +6,8 @@
   "repository": "git@github.com:perbu/silly-node-canopy.git",
   "scripts": {
     "test": "mocha",
+    "instrumented": "c8 node server.js",
+    "report": "c8 --reporter=html report",
     "start": "node server.js"
   },
   "author": "",

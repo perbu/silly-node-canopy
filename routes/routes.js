@@ -6,8 +6,8 @@ module.exports = function(server) {
 
   //Add route
   server.get("/calculator/add/:num1/:num2", function(req, res) {
-    const num1 = parseInt(req.params.num1);
-    const num2 = parseInt(req.params.num2);
+    const num1 = parseFloat(req.params.num1);
+    const num2 = parseFloat(req.params.num2);
 
     const data = {
       answer: num1 + num2
@@ -18,8 +18,8 @@ module.exports = function(server) {
 
   //Subtract route
   server.get("/calculator/sub/:num1/:num2", function(req, res) {
-    const num1 = parseInt(req.params.num1);
-    const num2 = parseInt(req.params.num2);
+    const num1 = parseFloat(req.params.num1);
+    const num2 = parseFloat(req.params.num2);
 
     var data = {
       answer: num1 - num2
@@ -30,8 +30,8 @@ module.exports = function(server) {
 
   //Multiply route
   server.get("/calculator/multi/:num1/:num2", function(req, res) {
-    const num1 = parseInt(req.params.num1);
-    const num2 = parseInt(req.params.num2);
+    const num1 = parseFloat(req.params.num1);
+    const num2 = parseFloat(req.params.num2);
 
     var data = {
       answer: num1 * num2
@@ -42,8 +42,8 @@ module.exports = function(server) {
 
   //Division route
   server.get("/calculator/div/:num1/:num2", function(req, res) {
-    const num1 = parseInt(req.params.num1);
-    const num2 = parseInt(req.params.num2);
+    const num1 = parseFloat(req.params.num1);
+    const num2 = parseFloat(req.params.num2);
 
     var data = {
       answer: num1 / num2
@@ -54,8 +54,8 @@ module.exports = function(server) {
 
 
 server.get("/calculator/add/:num1/:num2", function(req, res) {
-  const num1 = parseInt(req.params.num1);
-  const num2 = parseInt(req.params.num2);
+  const num1 = parseFloat(req.params.num1);
+  const num2 = parseFloat(req.params.num2);
 
   const data = {
     answer: num1 + num2

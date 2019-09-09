@@ -2,18 +2,19 @@
 
 // server.js
 const express = require("express");
-
-const PORT = 3000;
-// const HOST = 'localhost';
-
 const Emitter = require("events").EventEmitter;
 
 class apiServer {
-  constructor() {
+  on(msg) {
+    console.log("on:", msg);
+  }
+
+  constructor(port) {
     console.log("New apiserver: " + this);
     this.em = new Emitter();
     this.server = express();
-    // console.log("Created: " +  this.server.listen )
+    this.port = port;
+
     require("./routes/routes")(this.server);
     return this;
   }
@@ -22,13 +23,18 @@ class apiServer {
   async startup() {
     try {
       // create the server.
-      this.runningServer = await this.server.listen(PORT);
-      this.em.emit("serverStarted", "Server is started on port " + PORT);
+      // This line fucks up C8.
+      this.runningServer = await this.server.listen(this.port);
+      // This too:
+      //express().listen(PORT);
+
+      this.em.emit("serverStarted", "Server is started on port " + this.port);
+
       // set up event handler for shutdown.
+
       this.em.on("serverShutdown", () => {
         this.shutdown();
       });
-      //  this.em.on('dumpStats', () => this.dumpStats() );
     } catch (err) {
       console.warn(err);
       process.exit(1);
@@ -39,5 +45,4 @@ class apiServer {
     await this.runningServer.close();
   }
 }
-
 module.exports = apiServer;
