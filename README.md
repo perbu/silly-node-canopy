@@ -17,8 +17,8 @@ Then find the PID of the node process that is running server.js and send it a TE
 $ c8 --reporter=html report
 ```
 
-This will generate a HTML report in the coverage folder
-
+This will generate a HTML report in the coverage folder. See if you can use the report to spot the bug in the routes.
+i
 
 
 
