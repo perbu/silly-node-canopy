@@ -7,20 +7,26 @@ const target = supertest.agent('http://localhost:3000');
 
 const serverClass = require('../apiserver');
 
-let server = new serverClass;
+let server = new serverClass(3000);
 
 
 
 describe('Tests', function() {
   before('Set up a server', function(done) {
     // runs before all tests in this block
+    console.log("Starting up a server...");
+    const start = new Date();
     server.startup();
-    server.em.on("serverStarted", function(){
+    server.em.on("serverStarted", () => {
+      const finish = new Date();
+      const diff = new Date();
+      diff.setTime(finish.getTime() - start.getTime());
+      console.log("Startup took", diff.getMilliseconds(), "milliseconds");
       done();
     }); 
   });
 
-  after('Shut down the server', function() {
+  after('Shut down the server', () => {
     // runs after all tests in this block
     server.em.emit('serverShutdown', 'Requesting shutdown');
   });
